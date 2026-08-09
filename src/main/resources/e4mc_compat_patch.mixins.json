@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "network.vonix.e4mccompat.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8",
+  "mixins": [
+    "E4mcClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

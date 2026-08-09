@@ -1,0 +1,12 @@
+plugins { id "net.neoforged.moddev" version "2.0.140" }
+version = mod_version
+group = "network.vonix"
+base { archivesName = "e4mc_compat_patch" }
+java { toolchain.languageVersion = JavaLanguageVersion.of(25) }
+repositories { mavenCentral(); maven { url = "https://maven.neoforged.net/releases" } }
+dependencies { }
+neoForge {
+    version = neoforge_version
+    runs { server { server(); gameDirectory = project.file("runs/server") } }
+    mods { e4mc_compat_patch { sourceSet sourceSets.main } }
+}

@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[11,)"
+license = "MIT"
+
+[[mods]]
+modId = "e4mc_compat_patch"
+version = "0.1.0"
+displayName = "e4mc Compatibility Patch"
+authors = "Vonix.Network"
+description = '''Server-side redirect for e4mc 6.2.1's legacy permission call on NeoForge 26.1.2.93. The client pack remains unchanged.'''
+
+[[dependencies.e4mc_compat_patch]]
+modId = "neoforge"
+type = "required"
+versionRange = "[26.1.2.93,)"
+ordering = "AFTER"
+side = "SERVER"
+
+[[dependencies.e4mc_compat_patch]]
+modId = "e4mc"
+type = "required"
+versionRange = "[6.2.1,6.2.2)"
+ordering = "AFTER"
+side = "SERVER"
+
+[[mixins]]
+config = "e4mc_compat_patch.mixins.json"
