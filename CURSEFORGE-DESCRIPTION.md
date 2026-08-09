@@ -7,3 +7,9 @@ Detailed cause, fix, target versions, installation, provenance, and SHA-256:
 ```md
 https://github.com/Vonix-Network/bmc6-e4mc-compat
 ```
+
+Better MC 6 reference:
+
+```md
+https://www.curseforge.com/minecraft/modpacks/better-mc-bmc6
+```

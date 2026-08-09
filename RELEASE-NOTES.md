@@ -1,8 +1,6 @@
-# Better MC 6 e4mc Compatibility Patch
+# BMC6 e4mc Compatibility Patch v0.1.0
 
-This release provides the server-side compatibility patch that makes the Better MC 6 e4mc path work on Minecraft 26.1.2 / NeoForge 26.1.2.93.
-
-See the repository README for the detailed cause, the exact NeoForge API mismatch, the narrowly scoped Mixin fix, target versions, provenance, installation steps, and verification record.
+Clean release build for Better MC 6 on Minecraft 26.1.2 / NeoForge 26.1.2.93 / Java 25.
 
 ## Included file
 
@@ -10,7 +8,15 @@ See the repository README for the detailed cause, the exact NeoForge API mismatc
 
 SHA-256:
 
-`d4cd1eaa6a2aab464593618ec21c97de6ba75d5c69e9166f93a1228966164fec`
+`35383856bbc25f492f2aee1e37fe61dd0c6bceb753ff9c35f6694b631c855648`
+
+## Changes from the prior candidate
+
+- Internal mod version is now `0.1.0` rather than `0.1.0-candidate`.
+- Display name no longer contains candidate wording.
+- README now points to the exact Better MC 6 reference:
+  https://www.curseforge.com/minecraft/modpacks/better-mc-bmc6
+- Release JAR was rebuilt from source with the pinned Gradle wrapper.
 
 ## Compatibility
 
@@ -18,6 +24,6 @@ SHA-256:
 - Minecraft 26.1.2
 - NeoForge 26.1.2.93
 - Java 25
-- Original e4mc 6.2.1 remains required
+- Original e4mc 6.2.1 required separately
 
 The original e4mc JAR is not included or modified. No client-pack change is required.

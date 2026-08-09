@@ -4,7 +4,7 @@ Server-side compatibility patch for **Better MC 6** on **Minecraft 26.1.2 / NeoF
 
 ## What this fixes
 
-BMC6's e4mc integration failed on the 26.1.2 NeoForge server because e4mc 6.2.1 was compiled against an older command-permission API. Its command registration path still called the removed legacy `CommandSourceStack.hasPermission(int)` method. On the newer server API, that stale call could prevent the e4mc command path from functioning and could surface as a `NoSuchMethodError` during the relevant runtime path.
+Better MC 6's e4mc integration failed on the 26.1.2 NeoForge server because e4mc 6.2.1 was compiled against an older command-permission API. Its command registration path still called the removed legacy `CommandSourceStack.hasPermission(int)` method. On the newer server API, that stale call could prevent the e4mc command path from functioning and could surface as a `NoSuchMethodError` during the relevant runtime path.
 
 ## Fix
 
@@ -27,8 +27,8 @@ No client-pack modification is required. Install the original e4mc 6.2.1 JAR and
 ## Artifacts
 
 - `artifacts/e4mc_compat_patch-0.1.0.jar`
-- SHA-256: `d4cd1eaa6a2aab464593618ec21c97de6ba75d5c69e9166f93a1228966164fec`
-- Size: 3,021 bytes
+- SHA-256: `35383856bbc25f492f2aee1e37fe61dd0c6bceb753ff9c35f6694b631c855648`
+- Size: 3,009 bytes
 
 The base e4mc artifact used for compatibility work was pinned by SHA-256:
 
@@ -38,25 +38,23 @@ The base e4mc artifact used for compatibility work was pinned by SHA-256:
 
 ## Source of the error
 
-The affected reference environment was the **Better MC 6** modpack, running its Minecraft 26.1.2 / NeoForge 26.1.2.93 server stack. The incompatibility was between the pack's e4mc 6.2.1 binary and the newer NeoForge command-permission API—not a world, port, or client-pack configuration problem.
+The affected reference environment was the **Better MC 6** modpack:
 
-Reference pack:
+https://www.curseforge.com/minecraft/modpacks/better-mc-bmc6
 
-- Better MC 6: https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4
-- Minecraft / NeoForge target: 26.1.2 / 26.1.2.93
-- e4mc: 6.2.1
+The incompatibility was between the pack's e4mc 6.2.1 binary and the newer NeoForge command-permission API—not a world, port, or client-pack configuration problem.
 
 ## Verification record
 
-The candidate was clean-built with:
+The release artifact was built after changing the internal mod metadata from `0.1.0-candidate` to `0.1.0` with:
 
 ```text
 ./gradlew clean build --no-daemon --stacktrace
 ```
 
-A disposable dedicated-server boot reached `Done` with e4mc 6.2.1 present and did not show `NoSuchMethodError` or `FATAL` in the fresh log. The owner subsequently confirmed that BMC6 worked with this patch during the owner-run client test.
+Build result: `BUILD SUCCESSFUL`.
 
-The owner confirmation covers the practical BMC6 test result. The packaged artifact hash above identifies the exact release file.
+A disposable dedicated-server boot reached `Done` with e4mc 6.2.1 present and did not show `NoSuchMethodError` or `FATAL` in the fresh log. The owner subsequently confirmed that BMC6 worked with this patch during the owner-run client test.
 
 ## Installation
 
