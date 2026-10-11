@@ -7,17 +7,17 @@ This repository contains only the Vonix.Network compatibility patch source and r
 ## Target
 
 - Minecraft 26.1.2
-- NeoForge 26.1.2.93
+- NeoForge 26.1.2.93 or later (validated live on 26.1.2.109)
 - Java 25
 - Better MC 6 server
-- e4mc 6.2.1 as the separately installed base mod
+- e4mc 6.2.x as the separately installed base mod
 
 ## Repository contents
 
 - `src/main/java/network/vonix/e4mccompat/mixin/E4mcClientMixin.java` — narrow permission API bridge
 - `src/main/java/network/vonix/e4mccompat/mod/E4mcCompatPatch.java` — mod entrypoint
 - `src/main/resources/e4mc_compat_patch.mixins.json` — Mixin configuration
-- `artifacts/e4mc_compat_patch-0.1.0.jar` — release artifact
+- `artifacts/e4mc_compat_patch-1.0.0.jar` — release artifact
 - `README.md` — cause, source reference, installation, and verification details
 
 ## Reproducible build
@@ -33,8 +33,8 @@ Build command:
 ## Integrity
 
 ```text
-SHA-256  d4cd1eaa6a2aab464593618ec21c97de6ba75d5c69e9166f93a1228966164fec
-Bytes    3021
+SHA-256  ef6490f462dfae30c712c4f5c4899ffed12dd48ea084ffd0bcd8be9eba0d42d9
+Bytes    3029
 ```
 
 ## License

@@ -1,19 +1,19 @@
 # e4mc NeoForge Compatibility Patch
 
-Server-side compatibility patch for **e4mc 6.2.1** on **Minecraft 26.1.2 / NeoForge 26.1.2.93 / Java 25**.
+Server-side compatibility patch for the **e4mc 6.2.x** line on **Minecraft 26.1.2 / NeoForge 26.1.2.93+ / Java 25**.
 
 ## Affected components
 
 This was not a conflict between two gameplay mods. The compatibility boundary is between:
 
-1. **e4mc 6.2.1** — mod ID `e4mc`, specifically `link.e4mc.E4mcClient`.
-2. **Minecraft 26.1.2 / NeoForge 26.1.2.93** — the command-permission API consumed by e4mc. NeoForge is the loader/platform, not a second bundled mod.
+1. **e4mc 6.2.x** — mod ID `e4mc`, specifically `link.e4mc.E4mcClient`.
+2. **Minecraft 26.1.2 / NeoForge 26.1.2.93+** — the command-permission API consumed by e4mc. NeoForge is the loader/platform, not a second bundled mod.
 
 The problem was reproduced in Better MC 6:
 
 https://www.curseforge.com/minecraft/modpacks/better-mc-bmc6
 
-The same failure can affect other packs that combine e4mc 6.2.1 with this Minecraft/NeoForge API combination.
+The same failure can affect other packs that combine e4mc 6.2.x with this Minecraft/NeoForge API combination.
 
 ## What this fixes
 
@@ -57,13 +57,13 @@ source.permissions().hasPermission(
 )
 ```
 
-No client-pack modification is required. Install the original e4mc 6.2.1 JAR and this compatibility patch in the server `mods/` directory.
+No client-pack modification is required. Install the original e4mc 6.2.x JAR and this compatibility patch in the server `mods/` directory.
 
 ## Artifact
 
-- File: `e4mc_compat_patch-0.1.0.jar`
-- SHA-256: `35383856bbc25f492f2aee1e37fe61dd0c6bceb753ff9c35f6694b631c855648`
-- Size: 3,009 bytes
+- File: `e4mc_compat_patch-1.0.0.jar`
+- SHA-256: `ef6490f462dfae30c712c4f5c4899ffed12dd48ea084ffd0bcd8be9eba0d42d9`
+- Size: 3,029 bytes
 
 The original e4mc artifact is not redistributed. Its pinned SHA-256 in the reproduced environment was:
 
@@ -71,25 +71,41 @@ The original e4mc artifact is not redistributed. Its pinned SHA-256 in the repro
 41ee0d18fafe39f7422712b342248ebffbf392910bdb8d160c928e575edb29f0
 ```
 
+## Version coverage
+
+Starting with v1.0.0 the declared e4mc range is `[6.2.0,6.3)`. The redirect target was
+verified with `javap` in every published e4mc 6.2.x NeoForge build; all three expose
+`lambda$registerCommands$0(CommandSourceStack)Z` invoking
+`CommandSourceStack.hasPermission(I)Z` at the same instruction offset, so one range
+covers the line.
+
 ## Verification
 
-The release artifact was rebuilt after correcting its internal metadata from `0.1.0-candidate` to `0.1.0`:
+Built from pinned source with the pinned Gradle wrapper:
 
 ```text
-./gradlew clean build --no-daemon --stacktrace
+./gradlew clean build --no-daemon
 BUILD SUCCESSFUL
 ```
 
-The owner confirmed that BMC6 works with the patch during the owner-run client test.
+Validated live on Better MC 6 (`58bc95ef`, NeoForge 26.1.2.109, e4mc 6.2.2):
+
+```text
+e4mc Compatibility Patch 1.0.0 (e4mc_compat_patch)
+Done (1.958s)! For help, type "help"
+```
+
+The remote JAR SHA-256 was read back from the server and matched the local build hash.
 
 ## Installation
 
-1. Keep the original `e4mc-neoforge-6.2.1.jar` in `mods/`.
-2. Add `e4mc_compat_patch-0.1.0.jar` to the same server `mods/` directory.
-3. Keep the client modpack unchanged.
-4. Start the server and use the normal e4mc client flow.
+1. Keep the original `e4mc-neoforge-6.2.x.jar` in `mods/`.
+2. Add `e4mc_compat_patch-1.0.0.jar` to the same server `mods/` directory.
+3. Remove any older `e4mc_compat_patch-*.jar` — installing two versions at once is a duplicate-modId conflict.
+4. Keep the client modpack unchanged.
+5. Start the server and use the normal e4mc client flow.
 
-This release is pinned to e4mc 6.2.1 and NeoForge 26.1.2.93. Do not assume compatibility with other versions without testing.
+The declared range covers e4mc 6.2.0 through 6.2.x on NeoForge 26.1.2.93 or later. Do not assume compatibility with a future 6.3 line without testing.
 
 ## License and attribution
 

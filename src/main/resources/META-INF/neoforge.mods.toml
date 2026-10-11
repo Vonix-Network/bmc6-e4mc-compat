@@ -4,10 +4,10 @@ license = "MIT"
 
 [[mods]]
 modId = "e4mc_compat_patch"
-version = "0.1.0"
+version = "1.0.0"
 displayName = "e4mc Compatibility Patch"
 authors = "Vonix.Network"
-description = '''Server-side redirect for e4mc 6.2.1's legacy permission call on NeoForge 26.1.2.93. The client pack remains unchanged.'''
+description = '''Server-side redirect for e4mc's legacy command permission call on NeoForge 26.1.2.93+. Covers e4mc 6.2.0 through 6.2.x; the client pack remains unchanged.'''
 
 [[dependencies.e4mc_compat_patch]]
 modId = "neoforge"
@@ -19,7 +19,7 @@ side = "SERVER"
 [[dependencies.e4mc_compat_patch]]
 modId = "e4mc"
 type = "required"
-versionRange = "[6.2.1,6.2.2)"
+versionRange = "[6.2.0,6.3)"
 ordering = "AFTER"
 side = "SERVER"
 

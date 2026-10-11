@@ -6,7 +6,7 @@ e4mc NeoForge Compatibility Patch
 
 ## Short description
 
-Server-side compatibility patch for **e4mc 6.2.1** on **Minecraft 26.1.2 / NeoForge 26.1.2.93**. Fixes the command-permission API mismatch reproduced in Better MC 6 when a joining player's command tree was built. The affected components are e4mc 6.2.1 (`link.e4mc.E4mcClient`) and the Minecraft/NeoForge command-permission API; this can affect other packs using the same combination. No client-pack change is required. Keep the original e4mc 6.2.1 mod installed.
+Server-side compatibility patch for **e4mc 6.2.x** on **Minecraft 26.1.2 / NeoForge 26.1.2.93+**. Fixes the command-permission API mismatch reproduced in Better MC 6 when a joining player's command tree was built. The affected components are e4mc 6.2.x (`link.e4mc.E4mcClient`) and the Minecraft/NeoForge command-permission API; this can affect other packs using the same combination. No client-pack change is required. Keep the original e4mc mod installed.
 
 Detailed cause, fix, installation, provenance, and SHA-256:
 
@@ -26,24 +26,24 @@ https://www.curseforge.com/minecraft/modpacks/better-mc-bmc6
 - Category: Server Utility / server-side compatibility
 - Minecraft version: select the exact live CurseForge label for the pinned 26.1.2 runtime
 - Mod loader: NeoForge
-- File version: `0.1.0`
+- File version: `1.0.0`
 - Release type: Release
-- Required dependency: e4mc 6.2.1, required on the server
+- Required dependency: e4mc 6.2.x (declared range `[6.2.0,6.3)`), required on the server
 - Client requirement: optional / client pack unchanged
 - Project URL: https://github.com/Vonix-Network/bmc6-e4mc-compat
 - License: MIT for the patch; e4mc remains third-party and is not bundled
 
 ## Upload artifact
 
-`artifacts/e4mc_compat_patch-0.1.0.jar`
+`artifacts/e4mc_compat_patch-1.0.0.jar`
 
 SHA-256:
 
-`35383856bbc25f492f2aee1e37fe61dd0c6bceb753ff9c35f6694b631c855648`
+`ef6490f462dfae30c712c4f5c4899ffed12dd48ea084ffd0bcd8be9eba0d42d9`
 
 ## File changelog
 
-Initial release. Adds a narrow NeoForge 26.1.2.93 permission-API compatibility bridge for e4mc 6.2.1. The failure was reproduced in Better MC 6 when a joining player's command tree was built; the same e4mc/NeoForge combination may affect other packs. The original e4mc JAR is required separately and the client modpack does not need to change.
+Widens the declared e4mc range to `[6.2.0,6.3)` so the patch loads against e4mc 6.2.2 and later 6.2.x builds; the previous range excluded 6.2.2 and caused a hard FML dependency failure on Better MC 6. The redirect target was verified unchanged across e4mc 6.2.1, 6.2.2 and 6.2.3. Validated on a live Better MC 6 server (NeoForge 26.1.2.109, e4mc 6.2.2). The original e4mc JAR is required separately and the client modpack does not need to change.
 
 ## Acceptance notes
 
